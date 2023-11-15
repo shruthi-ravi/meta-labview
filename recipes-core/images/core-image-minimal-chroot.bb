@@ -1,7 +1,5 @@
 SUMMARY = "A small image intended to be used as a chroot"
 
-PREFFERED_PROVIDER_virtual/kernel = "linux-dummy"
-
 IMAGE_INSTALL = "packagegroup-core-boot \
 		 ${CORE_IMAGE_EXTRA_INSTALL} \
 		 bash \

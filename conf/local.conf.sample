@@ -265,3 +265,5 @@ PREFERRED_VERSION_opencv = "3.%"
 CONF_VERSION = "1"
 
 VOLATILE_LOG_DIR = "no"
+
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-dummy"
