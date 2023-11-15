@@ -3,9 +3,9 @@ HOMEPAGE = "http://ni.com/labview"
 
 LICENSE_FLAGS = "national-instruments"
 LICENSE = "NI_Maker_Software_License_Agreement"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=2c6c2a1463b05f89279c9242eae7d3a8"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=78f5e1407f56497420114288bb50af05"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}_${PV}:"
+FILESPATH =. "${THISDIR}/${PN}_${PV}:"
 
 S = "${WORKDIR}"
 
@@ -44,7 +44,7 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 # Uncomment for debugging:
 #INHIBIT_PACKAGE_STRIP = "1"
 
-FILES_${PN} = "/usr /var /etc"
+FILES_${PN} = "/etc /usr /var"
 
 do_install() {
     install -d ${D}
