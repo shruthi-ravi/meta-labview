@@ -67,10 +67,10 @@ my $NICURL_VERS = "21.3.0";
 #my $NICURL_VERS = "19.0.0";
 
 my $useIPKs = ($YEAR_VERS ge "2021");
-my $BASEIMAGETAR_FOR_CERTFILE = "Base/$BASE_VERS/762F/base.tar";
+my $BASEIMAGETAR_FOR_CERTFILE = "Base/$BASE_VERS/77DB/base.tar";
 
-my $ARCH = "armv7-a";   # or "x64"
-my $VISA_ARCH = "Arm";  # or "64"
+my $ARCH = "x64"; #"armv7-a";   # or "x64"
+my $VISA_ARCH = "64"; #"Arm";  # or "64"
 my $LV = "labview";
 
 my $MetaLVRoot = ".";
@@ -84,7 +84,7 @@ my $opt_s = 0;  # Extract postinst scripts
 
 my $arg;
 while (defined($arg = shift) && $arg =~ /^-/) {
-	if ($arg eq "-x") { # extract 
+	if ($arg eq "-x") { # extract
 		$opt_x = 1;
 	} elsif ($arg eq "-v") {
 		$opt_v = 1;
@@ -126,11 +126,11 @@ my @PKG = (
 		'summary' => "LabVIEW embedded run-time engine",
 		'homepage' => "http://ni.com/labview",
 		'ipk' => [
-			<$lvIPKSub/ni-labview-realtime_$LONG_VERS*_cortexa9-vfpv3.ipk>, # replaces LabVIEW/*
-			<$lvIPKSub/libnicpuinfo_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$lvIPKSub/libni-emb11_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$lvIPKSub/ni-rtlog_$RTLOG_VERS*_cortexa9-vfpv3.ipk>,
-			<$rtmainIPKSub/ni-tdms_$LONG_VERS*_cortexa9-vfpv3.ipk>,
+			<$lvIPKSub/ni-labview-realtime_$LONG_VERS*_core2-64.ipk>, # replaces LabVIEW/*
+			<$lvIPKSub/libnicpuinfo_$LONG_VERS*_core2-64.ipk>,
+			<$lvIPKSub/libni-emb11_$LONG_VERS*_core2-64.ipk>,
+			<$lvIPKSub/ni-rtlog_$RTLOG_VERS*_core2-64.ipk>,
+			<$rtmainIPKSub/ni-tdms_$LONG_VERS*_core2-64.ipk>,
 		],
 		'cdf' => [ # CDFs only used for release years <= 2020
 			"LabVIEW/$YEAR_VERS/LabVIEW-linux-$ARCH.cdf",
@@ -152,9 +152,9 @@ my @PKG = (
 		'summary' => "NI-VISA driver",
 		'homepage' => "http://ni.com/visa",
 		'ipk' => [
-			<$rtmainIPKSub/libvisa_*_cortexa9-vfpv3.ipk>,
+			<$rtmainIPKSub/libvisa_*_core2-64.ipk>,
 			<$rtmainIPKSub/libvisa-data_*_all.ipk>,
-			<$rtmainIPKSub/ni-visa-passport-serial_*_cortexa9-vfpv3.ipk>,
+			<$rtmainIPKSub/ni-visa-passport-serial_*_core2-64.ipk>,
 			<$rtmainIPKSub/ni-visa-errors_*_all.ipk>,
 		],
 	  	'cdf' => [
@@ -169,13 +169,13 @@ my @PKG = (
 		'summary' => "NI-LabVIEW web support libraries",
 		'homepage' => "http://ni.com/labview",
 		'ipk' => [
-			<$lvIPKSub/ni-labview-http-client_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$lvIPKSub/ni-labview-smtp-client_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$lvIPKSub/ni-labview-webdav-client_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$rtmainIPKSub/nicurl_$NICURL_VERS*_cortexa9-vfpv3.ipk>, # Link /usr/local/natinst/share/nicurl/ca-bundle.crt -> /etc/natinst/nissl/ca-bundle.crt now created as hard-link to host file in .deb installer
+			<$lvIPKSub/ni-labview-http-client_$LONG_VERS*_core2-64.ipk>,
+			<$lvIPKSub/ni-labview-smtp-client_$LONG_VERS*_core2-64.ipk>,
+			<$lvIPKSub/ni-labview-webdav-client_$LONG_VERS*_core2-64.ipk>,
+			<$rtmainIPKSub/nicurl_$NICURL_VERS*_core2-64.ipk>, # Link /usr/local/natinst/share/nicurl/ca-bundle.crt -> /etc/natinst/nissl/ca-bundle.crt now created as hard-link to host file in .deb installer
 			<$rtmainIPKSub/ni-ca-certs_*_all.ipk>, # has link /etc/natinst/nissl/ca-bundle.crt -> /etc/ssl/certs/ca-certificates.crt
-			<$rtmainIPKSub/nissl_*_cortexa9-vfpv3.ipk>,
-			<$rtmainIPKSub/ni-traceengine_*_cortexa9-vfpv3.ipk>,
+			<$rtmainIPKSub/nissl_*_core2-64.ipk>,
+			<$rtmainIPKSub/ni-traceengine_*_core2-64.ipk>,
 		],
 		'cdf' => [
 			"HTTP Client/$LONG_VERS/Linux/$ARCH_S/httpClient-linux-$ARCH_S.cdf",
@@ -197,10 +197,10 @@ my @PKG = (
 		'depends' => 'lv-web-support libcap',
 		'vers' => $LONG_VERS,
 	  	'ipk' => [
-			<$rtmainIPKSub/ni-system-webserver_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$rtmainIPKSub/ni-webservices-webserver-support_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$rtmainIPKSub/ni-webserver-libs_$LONG_VERS*_cortexa9-vfpv3.ipk>,
-			<$rtmainIPKSub/ni-ssl-webserver-support_$LONG_VERS*_cortexa9-vfpv3.ipk>,
+			<$rtmainIPKSub/ni-system-webserver_$LONG_VERS*_core2-64.ipk>,
+			<$rtmainIPKSub/ni-webservices-webserver-support_$LONG_VERS*_core2-64.ipk>,
+			<$rtmainIPKSub/ni-webserver-libs_$LONG_VERS*_core2-64.ipk>,
+			<$rtmainIPKSub/ni-ssl-webserver-support_$LONG_VERS*_core2-64.ipk>,
 		],
 	  	'cdf' => [
 			"System_webserver/$SHORT_VERS/Linux/$ARCH_S/NISystemWebServer-linux-$ARCH_S.cdf",
@@ -400,35 +400,35 @@ PLEASE READ THE FOLLOWING TERMS CAREFULLY. BY INSTALLING OR USING THE SOFTWARE, 
 
 Software License Agreement
 
-Subject to your compliance with the terms of this software license agreement, 
-NI grants you a limited, revocable, non-exclusive, non-sublicensable license 
-to use this software ("Software") as deployed on your hardware targets (each 
-"Target") and solely for your personal, non-commercial use. You may 
-redistribute the code only as deployed on a Target and solely for the 
-recipient's personal, non-commercial use, provided that you include a copy of 
+Subject to your compliance with the terms of this software license agreement,
+NI grants you a limited, revocable, non-exclusive, non-sublicensable license
+to use this software ("Software") as deployed on your hardware targets (each
+"Target") and solely for your personal, non-commercial use. You may
+redistribute the code only as deployed on a Target and solely for the
+recipient's personal, non-commercial use, provided that you include a copy of
 this license with the software.
 
-Software does not include certain third party software that NI provides to you 
-but that is subject to separate license terms either presented at the time of 
+Software does not include certain third party software that NI provides to you
+but that is subject to separate license terms either presented at the time of
 installation or otherwise provided with the Software.
 
-You may not modify or create derivatives of the Software; reverse engineer, 
-decompile, or disassemble the Software, unless and only to the extent that 
-applicable law expressly prohibits this restriction; defeat or work around any 
-access restrictions or encryption in the Software, unless and only to the 
-extent that applicable law expressly prohibits this restriction; or remove, 
-minimize, block, or modify any titles, logos, trademarks, copyright and patent 
+You may not modify or create derivatives of the Software; reverse engineer,
+decompile, or disassemble the Software, unless and only to the extent that
+applicable law expressly prohibits this restriction; defeat or work around any
+access restrictions or encryption in the Software, unless and only to the
+extent that applicable law expressly prohibits this restriction; or remove,
+minimize, block, or modify any titles, logos, trademarks, copyright and patent
 notices, disclaimers, or other legal notices that are included in the Software.
 
-SOFTWARE IS PROVIDED BY NI AND ITS LICENSORS "AS IS" AND WITH NO EXPRESS OR 
-IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF 
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. ANY IMPLIED OR EXPRESS 
-WARANTIES ARE DISCLAIMED. IN NO EVENT SHALL NI OR ITS LICENSORS BE LIABLE FOR 
+SOFTWARE IS PROVIDED BY NI AND ITS LICENSORS "AS IS" AND WITH NO EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. ANY IMPLIED OR EXPRESS
+WARANTIES ARE DISCLAIMED. IN NO EVENT SHALL NI OR ITS LICENSORS BE LIABLE FOR
 ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES,
-INCLUDING BUT NOT LIMITED TO LOSS OF USE, LOSS OF DATA, AND LOSS OF PROFITS, 
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-LIABILITY, OR TORT, ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF 
-NI OR ITS LICENSOR WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+INCLUDING BUT NOT LIMITED TO LOSS OF USE, LOSS OF DATA, AND LOSS OF PROFITS,
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT, ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF
+NI OR ITS LICENSOR WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 EOF
 		close O;
@@ -450,9 +450,9 @@ EOF
 		print O <<'EOF';  # Could recompute MD5 hash ourselves, but nibuild doesn't have up-to-date Digest::MD5 for 64-bit
 LICENSE_FLAGS = "national-instruments"
 LICENSE = "NI_Maker_Software_License_Agreement"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=2c6c2a1463b05f89279c9242eae7d3a8"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=78f5e1407f56497420114288bb50af05"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}_${PV}:"
+FILESPATH =. "${THISDIR}/${PN}_${PV}:"
 
 S = "${WORKDIR}"
 
